@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0">
+                <form class="form-register" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
+                    <!-- NAME -->
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" name="name" [(ngModel)]="form.name" #name="ngModel" required minlength="3" maxlength="50">
+                        <mat-icon matSuffix>insert_emoticon</mat-icon>
+                        <mat-error *ngIf="name.hasError('required')">The name is required!</mat-error>
+                        <mat-error *ngIf="name.hasError('minlength')">Name must more than 2 chacracter!</mat-error>
+                        <mat-error *ngIf="name.hasError('maxlength')">Name max 50 character!</mat-error>
+                    </mat-form-field><br>
+                    <!-- USERNAME -->
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Username..." name="username" [(ngModel)]="form.username" #username="ngModel" required minlength="3" maxlength="50">
+                        <mat-icon matSuffix>insert_emoticon</mat-icon>
+                        <mat-error *ngIf="username.hasError('required')">The username is required!</mat-error>
+                        <mat-error *ngIf="username.hasError('minlength')">Username must more than 2 chacracter!</mat-error>
+                        <mat-error *ngIf="username.hasError('maxlength')">UserName max 50 character!</mat-error>
+                    </mat-form-field><br>
+                    <!-- EMAIL -->
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email..." name="email" [(ngModel)]="form.email"  [formControl]="emailFormControl" required>
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">The email is required!</mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('email')">The emial invalid! Please try. Ex: Example@gmail.com</mat-error>
+                    </mat-form-field><br>
+                    <!-- PASSWORD -->
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="100">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password.hasError('required')">The password is required!</mat-error>
+                        <mat-error *ngIf="password.hasError('minlength')">Password must more than 6 chacracter!</mat-error>
+                        <mat-error *ngIf="password.hasError('maxlength')">Password max 100 character!</mat-error>
+                    </mat-form-field><br>
+                    <!-- BUTTON REGISTER -->
+                    <button mat-stroked-button class="mat-button-toggle-group btn-outline-primary">Register
+                        <mat-icon matSuffix>add_circle</mat-icon>
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
